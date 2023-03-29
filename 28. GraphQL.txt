@@ -1,0 +1,58 @@
+420. Intro
+
+    - REST on Steroids
+    - What it is and GraphQL vs REST
+
+421. What is GraphQL?
+
+    - REST APi
+        - Stateless, client-independent API fopr exchanging data
+
+    - GraphQL
+        - Stateless, client-independent API fopr exchanging data with higher query flexibility
+
+    
+    - The problem:
+        - If we have an endpoint that the front end uses to fetch some data, e.g.: a post {id, title, content etc}
+        
+        - What if we only need the title and id?
+            * We should not load unecessary data, as it overloads the app;
+
+            - We could:
+                - Create lots of endpoints
+                    * lost of maintanance
+                
+                - Use Query Parameters
+                    * Hard to understand and work with the api
+                
+                - Use GraphQL!
+                    * It will work like using in the frontend queries to access DBs
+
+    - How does it work:
+        - The client just have one endpoint
+        - Then the client send a Query Expression in the Request Body, to be parsed on the server and return the data the Client want
+        - It looks like this:
+            {
+                query {             // Operation type
+                    user {          // Operation 'endpoint'
+                        name        // Requested fields
+                        age
+                    }
+                }
+            }
+
+    - Operation Types:
+        - Query     ------>     Retrive Data ("GET")
+        - Mutations     ------>     Manipulate Data (Post, Put, Patch, Delete)
+        - Subscription  ----->      Set up real time connections (web sockets)
+
+    - Summing it up, how does it work:
+        - It's a normal Node (+ Express) Server
+        - ONE single Endpoint (typically /graphql)
+        - Uses "POST" request only (the req body has the expressions)
+        - Resolvers analyses the Req Body for parsing data
+
+
+
+
+
